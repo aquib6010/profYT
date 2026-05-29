@@ -7,10 +7,15 @@
 
 **The question YouTube Studio won't answer: _which of my videos actually made money, and what should I make more of?_**
 
+### 🔗 [**Live demo →**](https://prof-yt.vercel.app)
+
+[![Live](https://img.shields.io/badge/demo-live-success)](https://prof-yt.vercel.app)
 [![CI](https://github.com/aquib6010/profYT/actions/workflows/ci.yml/badge.svg)](https://github.com/aquib6010/profYT/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![React](https://img.shields.io/badge/react-18-61dafb)
 ![License](https://img.shields.io/badge/license-MIT-green)
+
+<sub>Backed by a free instance — the first load may take ~30–60s to wake.</sub>
 
 </div>
 
