@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  backend:
+    name: lint · type-check · test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies (CI subset)
+        run: pip install -r requirements-ci.txt
+
+      - name: Lint (ruff)
+        run: ruff check app tests
+
+      - name: Type-check (mypy)
+        run: mypy app
+
+      - name: Test (pytest)
+        run: pytest -q

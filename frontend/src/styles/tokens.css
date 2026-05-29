@@ -1,0 +1,60 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Profitly design tokens — single source of truth.
+   Semantic names are mapped into Tailwind (tailwind.config.js) via var().
+   Change a value here and it cascades everywhere. No magic numbers in JSX.
+   Direction: "ledger terminal meets creator studio" — warm paper, near-black
+   ink, one amber accent; green/red are data signal only.
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Ink (text) — warm near-black, not pure #000 */
+  --ink: #1a1712;
+  --ink-muted: #5c564b;
+  --ink-subtle: #8a8275;
+
+  /* Surfaces — warm neutrals */
+  --paper: #f5f2ea;
+  --surface: #ffffff;
+  --surface-2: #fcfaf5;
+  --line: #e4dfd3;
+  --grid: rgba(26, 23, 18, 0.045); /* faint ledger rule */
+
+  /* Accent — terminal amber, used sparingly */
+  --accent: #b8530e;
+  --accent-strong: #97430a;
+  --accent-soft: #f4e3cf;
+  --accent-ink: #ffffff;
+
+  /* Data signal — considered, desaturated */
+  --pos: #157347;
+  --pos-soft: #e3f0e8;
+  --neg: #a12a1e;
+  --neg-soft: #f5e4e1;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-2xl: 28px;
+
+  /* Shadows — warm-tinted */
+  --shadow-sm: 0 1px 2px rgba(26, 23, 18, 0.05), 0 1px 3px rgba(26, 23, 18, 0.06);
+  --shadow-md: 0 4px 14px rgba(26, 23, 18, 0.07), 0 2px 4px rgba(26, 23, 18, 0.04);
+  --shadow-lg: 0 18px 48px rgba(26, 23, 18, 0.12);
+}
+
+/* Faint ledger-grid background for marketing sections */
+.bg-ledger {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+
+/* Tabular figures everywhere numbers matter */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}

@@ -1,0 +1,40 @@
+# CI dependency subset of requirements.txt.
+#
+# Excludes the heavy / fragile libraries that aren't needed to lint, type-check,
+# or run the test suite: torch, transformers, sentence-transformers (the
+# categorization test auto-skips when these are absent), prophet (Stan backend),
+# econml, dowhy, shap. The forecast/anomaly/recommend tests run on the light
+# scientific stack below.
+
+# Web / app
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+itsdangerous==2.2.0
+
+# Data layer (SQLite is used for tests; asyncpg not needed in CI)
+sqlalchemy[asyncio]==2.0.36
+aiosqlite==0.20.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# Auth
+google-auth==2.37.0
+google-auth-oauthlib==1.2.1
+cryptography==44.0.0
+httpx==0.28.1
+
+# Scientific stack used by the ML services under test
+numpy==2.2.1
+pandas==2.2.3
+scipy==1.14.1
+scikit-learn==1.6.0
+statsmodels==0.14.4
+lightgbm==4.5.0
+ruptures==1.1.9
+
+# Tooling
+pytest==8.3.4
+pytest-asyncio==0.25.0
+ruff==0.8.4
+mypy==1.14.0

@@ -1,0 +1,39 @@
+[project]
+name = "profitly-backend"
+version = "0.1.0"
+description = "Profitly — revenue intelligence for YouTube creators"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "SIM"]
+# E501: line length is cosmetic here. B008: FastAPI relies on Depends()/Query()
+# in argument defaults. N803/N806: uppercase X/R/A matrix names are idiomatic in
+# numerical/ML code.
+ignore = ["E501", "B008", "N803", "N806"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+# Pragmatic over maximal-strict: full generic typing for numpy/pandas/sklearn is
+# noisy and low-value. We still type-check inside functions and catch real issues.
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+disallow_any_generics = false
+warn_return_any = false
+exclude = ["alembic/", "app/scripts/"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/scripts/*", "alembic/*"]
