@@ -32,14 +32,15 @@ app.add_middleware(
 )
 # SessionMiddleware: signed-cookie session, used to carry OAuth CSRF state across
 # the Google redirect, and (after callback) to identify the logged-in creator.
-# https_only=False because dev runs on http://localhost; flip to True in prod.
+# Cookie attributes come from settings: local dev defaults to lax/insecure; prod
+# (cross-site Vercel<->Render) needs same_site="none" + https_only=True.
 app.add_middleware(
     SessionMiddleware,
     secret_key=settings.session_secret,
     session_cookie="profitly_session",
     max_age=60 * 60 * 24 * 7,  # 7 days
-    same_site="lax",           # Required so the cookie survives the OAuth redirect from Google.
-    https_only=False,
+    same_site=settings.cookie_samesite,
+    https_only=settings.cookie_secure,
 )
 
 # --- Routers ---

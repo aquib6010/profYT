@@ -18,6 +18,13 @@ class Settings(BaseSettings):
 
     frontend_origin: str = Field(default="http://localhost:5173")
 
+    # Session cookie. Local dev is same-site over http, so lax/insecure works.
+    # In production the frontend (Vercel) and backend (Render) are cross-site, so
+    # the cookie must be SameSite=None + Secure or the browser drops it.
+    # Set COOKIE_SAMESITE=none and COOKIE_SECURE=true in the prod environment.
+    cookie_samesite: str = Field(default="lax")
+    cookie_secure: bool = Field(default=False)
+
     hf_home: str = Field(default="./.cache/huggingface")
     log_level: str = Field(default="INFO")
 
